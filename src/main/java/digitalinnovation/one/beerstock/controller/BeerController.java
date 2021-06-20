@@ -1,5 +1,8 @@
 package digitalinnovation.one.beerstock.controller;
 
+import digitalinnovation.one.beerstock.dto.BeerDTO;
+import digitalinnovation.one.beerstock.exception.BeerAlreadyRegisteredException;
+import digitalinnovation.one.beerstock.exception.BeerNotFoundException;
 import digitalinnovation.one.beerstock.service.BeerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/beers")
@@ -17,7 +21,7 @@ public class BeerController implements BeerControllerDocs {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BeerDTO createBeer(@RequestBody @Valid BeerDTO beerDTO) throws BeerAlreadyExistsException{
+    public BeerDTO createBeer(@RequestBody @Valid BeerDTO beerDTO) throws BeerAlreadyRegisteredException {
         return beerService.createBeer(beerDTO);
     }
 
@@ -37,6 +41,6 @@ public class BeerController implements BeerControllerDocs {
         beerService.deleteByID(id);
     }
 
-    
+
 
 }

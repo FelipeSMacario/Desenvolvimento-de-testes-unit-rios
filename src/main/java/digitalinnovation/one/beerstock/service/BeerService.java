@@ -1,6 +1,10 @@
 package digitalinnovation.one.beerstock.service;
 
+import digitalinnovation.one.beerstock.dto.BeerDTO;
 import digitalinnovation.one.beerstock.entity.Beer;
+import digitalinnovation.one.beerstock.exception.BeerAlreadyRegisteredException;
+import digitalinnovation.one.beerstock.exception.BeerNotFoundException;
+import digitalinnovation.one.beerstock.mapper.BeerMapper;
 import digitalinnovation.one.beerstock.repository.BeerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +44,7 @@ public class BeerService {
 
     public void deleteByID(Long id) throws BeerNotFoundException{
         verifyIfExists(id);
-        beerRepository.deleleById(id);
+        beerRepository.deleteById(id);
     }
 
     public void verifyIfIsAlreadyRegistered(String name) throws BeerAlreadyRegisteredException{
